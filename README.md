@@ -1,5 +1,5 @@
 # Galactic Shield Web Game
-![Screenshot](game_screen.png)
+[Screenshot](game_screen.png)
 
 This is the cool web game in which you become a starship pilot. You need to protect the galaxy and destroy the aliens!
 
