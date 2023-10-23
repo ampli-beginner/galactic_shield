@@ -12,7 +12,7 @@ This is the cool web game in which you become a starship pilot. You need to prot
 
 ## How to Play
 
-1. Open the game in a Web Browser by following the link [Galactic Shield](game-link)
+1. Open the game in a Web Browser by following the link [Galactic Shield](https://ampli-beginner.github.io/galactic_shield/game)
 2. Use the <- (arrow left) and -> (arrow right) to control the starship's movement.
 3. Press the "Space" key to shoot the alien.
 4. Strive to eliminate all the invaders before they reach your spacecraft.
