@@ -15,20 +15,20 @@ function handleKeyPress(event) {
     let img = document.getElementById("ship");
     let key = event.key;
 
-    if(key === "ArrowLeft") {
-        if(translateX > -maxMove) {
+    if (key === "ArrowLeft") {
+        if (translateX > -maxMove) {
             translateX = translateX - 10;
         }
         img.style.transform = `translate(${translateX}px, ${translateY}px)`;
     }
-    else if(key === "ArrowRight") {
-        if(translateX < maxMove) {
+    else if (key === "ArrowRight") {
+        if (translateX < maxMove) {
             translateX = translateX + 10;
         }
         img.style.transform = `translate(${translateX}px, ${translateY}px)`;
     }
-    else if(key === " ") {
-        if(shootCount > 0) {
+    else if (key === " ") {
+        if (shootCount > 0) {
             shootCount = shootCount - 1;
             shot();
         }
@@ -49,7 +49,7 @@ function startGame() {
     const imageNames = ["ufo1.png", "ufo2.png", "ufo3.png"];
     const imageContainer = document.getElementById("imageContainer");
     let imageId = 0;
-    for(let i = 0; i < ufosCount; i++) {
+    for (let i = 0; i < ufosCount; i++) {
         const image = document.createElement("img");
         const imageName = imageNames[imageId];
         image.src = imageName;
@@ -57,12 +57,12 @@ function startGame() {
         imageContainer.appendChild(image);
 
         imageId++;
-        if(imageId == 3) {
+        if (imageId == 3) {
             imageId = 0;
         }
     }
 
-    moving = setInterval(function() {
+    moving = setInterval(function () {
         containerY += 5;
         containerX *= -1;
         imageContainer.style.transform = `translate(${containerX}px,${containerY}px)`;
@@ -70,7 +70,7 @@ function startGame() {
         const divRect = imageContainer.getBoundingClientRect();
         const shipRect = ship.getBoundingClientRect();
 
-        if(divRect.bottom > shipRect.top) {
+        if (divRect.bottom > shipRect.top) {
             resetGame("The game is over!")
         }
     }, 1000 / 4);
@@ -89,35 +89,35 @@ function shot() {
     splash.style.bottom = 200 + "px";
     splashContainer.appendChild(splash);
 
-    const movingInterval = setInterval(function() {
-        for(let i = 0; i < imageContainer.children.length; i++) {
+    const movingInterval = setInterval(function () {
+        for (let i = 0; i < imageContainer.children.length; i++) {
             const childElement = imageContainer.children[i];
-            if(childElement.style.visibility == "hidden")
+            if (childElement.style.visibility == "hidden")
                 continue;
 
             const divRect = childElement.getBoundingClientRect();
             const splashRect = splash.getBoundingClientRect();
 
-            if(divRect.right >= splashRect.right 
+            if (divRect.right >= splashRect.right
                 && divRect.left <= splashRect.left
                 && splashRect.top < divRect.bottom) {
-                    clearInterval(movingInterval);
-                    splashContainer.removeChild(splash);
-                    childElement.style.visibility = "hidden";
-                    destroyed++;
-                    if(destroyed == ufosCount) {
-                        resetGame("You are the Winner!");
-                    }
-                    break;
+                clearInterval(movingInterval);
+                splashContainer.removeChild(splash);
+                childElement.style.visibility = "hidden";
+                destroyed++;
+                if (destroyed == ufosCount) {
+                    resetGame("You are the Winner!");
                 }
+                break;
+            }
         }
 
         const splashPositionY = parseFloat(getComputedStyle(splash).bottom);
         const step = 10;
 
-        if(splashPositionY >= window.innerHeight) {
+        if (splashPositionY >= window.innerHeight) {
             clearInterval(movingInterval);
-            splashContainer.removeChild(splash);            
+            splashContainer.removeChild(splash);
         }
         else {
             splash.style.bottom = splashPositionY + step + "px";
@@ -130,7 +130,7 @@ function resetGame(message) {
     alert(message);
 
     clearInterval(moving);
-    
+
     let button = document.getElementById("startButton");
     button.style.display = "block";
 
@@ -141,7 +141,7 @@ function resetGame(message) {
     destroyed = 0;
 
     shootCount = defaultCount;
-    
+
     ship.style.transform = "translate(0px, 0px)";
     imageContainer.style.transform = "translate(0px, 0px)";
     imageContainer.innerHTML = "";
